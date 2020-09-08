@@ -1,0 +1,40 @@
+Case study: 
+
+There is a remote git repo of CHISE project for IDS database.
+However, its website is not stable for accessing.
+
+I will host a mirror GitHub repo via my local repo.
+
+1. clone repo from CHISE project
+git clone http://git.chise.org/git/chise/ids.git
+
+2. make a new repo on GitHub
+git@github.com:ntuanhung/cjkv-ids 
+
+
+3. add a new remote link to remote repo on GitHub
+git remote add upstream git@github.com:ntuanhung/cjkv-ids.git
+git remote set-url --add --push upstream git@github.com:ntuanhung/cjkv-ids.git
+
+Check current remotes
+git remote -vv 
+ 
+4. (Optional) add public key for SSH in GitHub account.
+
+5. make a mirror push to GitHub repo
+git push --mirror https://github.com/ntuanhung/CJKV-IDS.git
+
+
+6. check latest updates from all remotes
+git fetch --all
+
+7. pull update from a remote to local
+git rebase upstream/master 
+OR
+git rebase origin/master
+
+8. push local master to the `upstream` remote
+git push upstream master
+
+9. (Optional) Using this following command so that the default tracking remote will be changed to `upstream` (GitHub)
+git push -u upstream master
